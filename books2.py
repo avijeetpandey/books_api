@@ -62,6 +62,25 @@ async def create_book(book_request: BookRequest):
     return {"message": "successfully done"}
 
 
+# get a book by id
+@app.get("/book/{book_id}")
+async def get_book_by_id(book_id: int):
+    for book in BOOKS:
+        if book.id == book_id:
+            return book
+
+# get a book by rating
+
+
+@app.get("/book")
+async def get_book_by_rating(rating: int):
+    books_to_return = []
+    for book in BOOKS:
+        if book.rating == rating:
+            books_to_return.append(book)
+    return books_to_return
+
+
 # utility function
 def assign_id_to_book(book: Book):
     if len(BOOKS) > 0:
